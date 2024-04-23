@@ -1,0 +1,24 @@
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+import java.util.List;
+
+public class FoodListGeneratorTest {
+
+    @Test
+    public void testGenerateFoodList() {
+        int numberOfFoods = 15; // Test with 15 food items
+        List<FoodListGenerator.FoodItem> foodList = FoodListGenerator.generateFoodList(numberOfFoods);
+
+        // Check if the generated list size is either 10 or equal to the number of foods, whichever is smaller
+        int expectedSize = Math.min(10, numberOfFoods);
+        assertEquals(expectedSize, foodList.size());
+
+        // Check if all generated food items have unique IDs
+        for (int i = 0; i < foodList.size(); i++) {
+            for (int j = i + 1; j < foodList.size(); j++) {
+                assertTrue(foodList.get(i).getId() != foodList.get(j).getId());
+            }
+        }
+    }
+}
