@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class FoodListGenerator {
+    public static List<FoodItem> generateFoodList(int numberOfFoods) {
+        // Create a list of unique IDs
+        List<Integer> uniqueIds = new ArrayList<>();
+        for (int i = 1; i <= numberOfFoods; i++) {
+            uniqueIds.add(i);
+        }
+
+        // Randomly pick 10 unique IDs from the list
+        Random random = new Random();
+        for (int i = 0; i < Math.min(10, numberOfFoods); i++) {
+            int randomIndex = random.nextInt(uniqueIds.size());
+            int id = uniqueIds.get(randomIndex);
+            foodList.add(foods[id - 1]); // Add food item using the selected ID
+            uniqueIds.remove(randomIndex); // Remove the selected ID to avoid duplication
+        }
+
+        return foodList;
+    }
+}
