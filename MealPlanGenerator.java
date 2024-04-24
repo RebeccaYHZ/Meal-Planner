@@ -25,38 +25,66 @@ public class MealPlanGenerator {
         scanner.close();
 
         List<FoodItem> foods = FoodListGenerator.generateFoodList();
-        double targetCalories = (double) CalorieCalculator.calculateTDEE(age, gender, height, weight, activityLevel);
+        int targetCalories = (int) CalorieCalculator.calculateTDEE(age, gender, height, weight, activityLevel);
+        System.out.println(targetCalories);
         List<FoodItem> mealPlan = generateMealPlan(foods, targetCalories);
 
+        int total = 0;
+        for (FoodItem food : mealPlan) {
+            total += food.getCalories();
+        }
+
+        System.out.println("total: " + total);
         System.out.println("Generated Meal Plan:");
         for (FoodItem food : mealPlan) {
             System.out.println(food.getName());
         }
     }
 
-    public static List<FoodItem> generateMealPlan(List<FoodItem> foods, double targetCalories) {
+    public static List<FoodItem> generateMealPlan(List<FoodItem> foods, int targetCalories) {
         int n = foods.size();
         int[][] dp = new int[n + 1][targetCalories + 1];
 
         int meatCount = 2;
         int carbCount = 2;
+        int vegetableCount = 0;
+        int fruitCount = 0;
 
         for (int i = 1; i <= n; i++) {
+            // Check if all options are used up and if target calories are met
+            if (meatCount == 0 && carbCount == 0 && vegetableCount == 0 && fruitCount == 0 && targetCalories <= 0) {
+                break;
+            }
+
+            // Check the category of the current food item
+            String category = foods.get(i - 1).getCategory();
+
+            // Determine the protein value based on the category and available counts
+            int proteinValue = 0;
+            if (category.equalsIgnoreCase("meat") && meatCount > 0) {
+                proteinValue = foods.get(i - 1).getProtein();
+                meatCount--;
+            } else if (category.equalsIgnoreCase("carbs") && carbCount > 0) {
+                proteinValue = foods.get(i - 1).getProtein();
+                carbCount--;
+            } else if (category.equalsIgnoreCase("vegetable")) {
+                if (vegetableCount < 2 && targetCalories > 0) {
+                    proteinValue = foods.get(i - 1).getProtein();
+                    vegetableCount++;
+                    targetCalories -= foods.get(i - 1).getCalories();
+                }
+            } else if (category.equalsIgnoreCase("fruit")) {
+                if (fruitCount < 2 && targetCalories > 0) {
+                    proteinValue = foods.get(i - 1).getProtein();
+                    fruitCount++;
+                    targetCalories -= foods.get(i - 1).getCalories();
+                }
+            }
+
             for (int j = 1; j <= targetCalories; j++) {
                 if (foods.get(i - 1).getCalories() <= j) {
-                    int meatValue = 0;
-                    int carbValue = 0;
-
-                    if (foods.get(i - 1).getCategory().equalsIgnoreCase("meat") && meatCount > 0) {
-                        meatValue = foods.get(i - 1).getProtein();
-                        meatCount--;
-                    } else if (foods.get(i - 1).getCategory().equalsIgnoreCase("carbs") && carbCount > 0) {
-                        carbValue = foods.get(i - 1).getProtein();
-                        carbCount--;
-                    }
-
                     dp[i][j] = Math.max(dp[i - 1][j],
-                            dp[i - 1][j - foods.get(i - 1).getCalories()] + meatValue + carbValue);
+                            dp[i - 1][j - foods.get(i - 1).getCalories()] + proteinValue);
                 } else {
                     dp[i][j] = dp[i - 1][j];
                 }
