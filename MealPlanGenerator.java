@@ -22,6 +22,9 @@ public class MealPlanGenerator {
         System.out.print("Please enter your activity level (a value between 1.2 and 2.4): ");
         double activityLevel = scanner.nextDouble();
 
+        System.out.print("Are you vegetarian? (0: Yes, 1: No): ");
+        int checkVegetarian = scanner.nextInt();
+
         System.out.print("Please enter your goal number (0: Maintain weight, 1: keep fit, 2: lose weight): ");
         int goal = scanner.nextInt();
 
@@ -31,14 +34,20 @@ public class MealPlanGenerator {
 
         System.out.println(targetCalories);
 
-        System.out.println("===== Generated Meal Plan =====");
-        for (int i = 0; i < 3; i++) {
-            categoryPlan(targetCalories, i, goal); // 0 for vegetables, 1 for meat, 2 for carbs
+        boolean isVegetarian;
+        if (checkVegetarian == 0) {
+            isVegetarian = true;
+        } else {
+            isVegetarian = false;
         }
 
+        System.out.println("===== Generated Meal Plan =====");
+        for (int i = 0; i < 3; i++) {
+            categoryPlan(targetCalories, i, goal, isVegetarian); // 0 for vegetables, 1 for meat, 2 for carbs
+        }
     }
 
-    public static void categoryPlan(double targetCalories, int categoryIndex, int goal) {
+    public static void categoryPlan(double targetCalories, int categoryIndex, int goal, boolean isVegetarian) {
         List<FoodItem> foods = FoodListGenerator.generateFoodList().get(categoryIndex);
         if (categoryIndex == 0) {
             int vegeCalories = (int) NutritionNeed.vitaminNeed(targetCalories, goal);
@@ -48,8 +57,10 @@ public class MealPlanGenerator {
                 System.out.println(food.getName());
             }
         } else if (categoryIndex == 1) {
+            if (isVegetarian) {
+                foods = FoodListGenerator.generateFoodList().get(3);
+            }
             int meatCalories = (int) NutritionNeed.proteinNeed(targetCalories, goal);
-            System.out.println(meatCalories);
             List<FoodItem> meatPlan = generateMealPlan(foods, meatCalories);
             System.out.println("[Meat Meal Plan:]");
             for (FoodItem food : meatPlan) {
