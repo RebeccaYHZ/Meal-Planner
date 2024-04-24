@@ -54,6 +54,7 @@ public class FoodData {
         foodItems.add(new FoodItem(id++, "Chickpeas (200g cooked)", "Carbs", 328, 18, 0, 6, 54));
         foodItems.add(new FoodItem(id++, "Potato (200g)", "Carbs", 154, 4, 0, 0, 34));
         
+        // Adding vegan protein category
         foodItems.add(new FoodItem(id++, "Tofu (200g)", "Vegan Protein", 150, 16, 0, 9, 4));
         foodItems.add(new FoodItem(id++, "Tempeh (200g)", "Vegan Protein", 320, 34, 0, 18, 16));
         foodItems.add(new FoodItem(id++, "Seitan (200g)", "Vegan Protein", 370, 75, 0, 2, 14));

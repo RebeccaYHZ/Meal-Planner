@@ -28,7 +28,7 @@ public class CalorieCalculator {
 
         // Total Daily Energy Expenditure (TDEE) calculation based on activity level
         double tdee = 0;
-        tdee = bmr * activityLevel;
+        tdee = bmr * (activityLevel / 10 + 1.1);
 
         return tdee;
     }

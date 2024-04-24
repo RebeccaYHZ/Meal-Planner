@@ -19,7 +19,7 @@ public class MealPlanGenerator {
         System.out.print("Please enter your weight (in kilograms): ");
         double weight = scanner.nextDouble();
 
-        System.out.print("Please enter your activity level (a value between 1.2 and 2.4): ");
+        System.out.print("Please enter your activity level (a value between 1 and 5): ");
         double activityLevel = scanner.nextDouble();
 
         System.out.print("Are you vegetarian? (0: Yes, 1: No): ");
@@ -32,7 +32,7 @@ public class MealPlanGenerator {
 
         double targetCalories = (double) CalorieCalculator.calculateTDEE(age, gender, height, weight, activityLevel);
 
-        System.out.println(targetCalories);
+        System.out.println("\nYour total daily calorie intake should be around " + targetCalories);
 
         boolean isVegetarian;
         if (checkVegetarian == 0) {
@@ -52,7 +52,7 @@ public class MealPlanGenerator {
         if (categoryIndex == 0) {
             int vegeCalories = (int) NutritionNeed.vitaminNeed(targetCalories, goal);
             List<FoodItem> vegePlan = generateMealPlan(foods, vegeCalories);
-            System.out.println("[Vegetable Meal Plan:]");
+            System.out.println("\n[Vegetable/fruit:]");
             for (FoodItem food : vegePlan) {
                 System.out.println(food.getName());
             }
@@ -62,14 +62,14 @@ public class MealPlanGenerator {
             }
             int meatCalories = (int) NutritionNeed.proteinNeed(targetCalories, goal);
             List<FoodItem> meatPlan = generateMealPlan(foods, meatCalories);
-            System.out.println("[Meat Meal Plan:]");
+            System.out.println("\n[Meat/vegan protein:]");
             for (FoodItem food : meatPlan) {
                 System.out.println(food.getName());
             }
         } else {
             int carbCalories = (int) NutritionNeed.carbsNeed(targetCalories, goal);
             List<FoodItem> carbPlan = generateMealPlan(foods, carbCalories);
-            System.out.println("[Carb Meal Plan:]");
+            System.out.println("\n[Carb:]");
             for (FoodItem food : carbPlan) {
                 System.out.println(food.getName());
             }
