@@ -43,17 +43,17 @@ public class FoodData {
         foodItems.add(new FoodItem(id++, "Buffalo (100g)", "Meat", 146, 21, 0, 7, 0));
 
         // Adding carbs category
-        foodItems.add(new FoodItem(id++, "White Rice (100g cooked)", "Carbs", 130, 3, 0, 0, 28));
-        foodItems.add(new FoodItem(id++, "Pasta (100g cooked)", "Carbs", 158, 6, 0, 1, 30));
-        foodItems.add(new FoodItem(id++, "Quinoa (100g cooked)", "Carbs", 120, 4, 0, 2, 21));
-        foodItems.add(new FoodItem(id++, "Oats (100g)", "Carbs", 389, 17, 0, 7, 66));
-        foodItems.add(new FoodItem(id++, "Sweet Potato (100g)", "Carbs", 86, 2, 0, 0, 20));
-        foodItems.add(new FoodItem(id++, "Lentils (100g cooked)", "Carbs", 116, 9, 0, 0, 20));
-        foodItems.add(new FoodItem(id++, "Black Beans (100g cooked)", "Carbs", 132, 9, 0, 0, 23));
-        foodItems.add(new FoodItem(id++, "Corn (100g)", "Carbs", 96, 3, 0, 1, 21));
-        foodItems.add(new FoodItem(id++, "Chickpeas (100g cooked)", "Carbs", 164, 9, 0, 3, 27));
-        foodItems.add(new FoodItem(id++, "Potato (100g)", "Carbs", 77, 2, 0, 0, 17));
-
+        foodItems.add(new FoodItem(id++, "White Rice (200g cooked)", "Carbs", 260, 6, 0, 0, 56));
+        foodItems.add(new FoodItem(id++, "Pasta (200g cooked)", "Carbs", 316, 12, 0, 2, 60));
+        foodItems.add(new FoodItem(id++, "Quinoa (200g cooked)", "Carbs", 240, 8, 0, 4, 42));
+        foodItems.add(new FoodItem(id++, "Oats (200g)", "Carbs", 778, 34, 0, 14, 132));
+        foodItems.add(new FoodItem(id++, "Sweet Potato (200g)", "Carbs", 172, 4, 0, 0, 40));
+        foodItems.add(new FoodItem(id++, "Lentils (200g cooked)", "Carbs", 232, 18, 0, 0, 40));
+        foodItems.add(new FoodItem(id++, "Black Beans (200g cooked)", "Carbs", 264, 18, 0, 0, 46));
+        foodItems.add(new FoodItem(id++, "Corn (200g)", "Carbs", 192, 6, 0, 2, 42));
+        foodItems.add(new FoodItem(id++, "Chickpeas (200g cooked)", "Carbs", 328, 18, 0, 6, 54));
+        foodItems.add(new FoodItem(id++, "Potato (200g)", "Carbs", 154, 4, 0, 0, 34));
+        
         return foodItems;
     }
 
