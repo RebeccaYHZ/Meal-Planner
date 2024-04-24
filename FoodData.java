@@ -54,6 +54,16 @@ public class FoodData {
         foodItems.add(new FoodItem(id++, "Chickpeas (200g cooked)", "Carbs", 328, 18, 0, 6, 54));
         foodItems.add(new FoodItem(id++, "Potato (200g)", "Carbs", 154, 4, 0, 0, 34));
         
+        foodItems.add(new FoodItem(id++, "Tofu (200g)", "Vegan Protein", 150, 16, 0, 9, 4));
+        foodItems.add(new FoodItem(id++, "Tempeh (200g)", "Vegan Protein", 320, 34, 0, 18, 16));
+        foodItems.add(new FoodItem(id++, "Seitan (200g)", "Vegan Protein", 370, 75, 0, 2, 14));
+        foodItems.add(new FoodItem(id++, "Lentils (200g cooked)", "Vegan Protein", 230, 18, 0, 0, 40));
+        foodItems.add(new FoodItem(id++, "Chickpeas (200g cooked)", "Vegan Protein", 320, 19, 0, 6, 54));
+        foodItems.add(new FoodItem(id++, "Black Beans (200g cooked)", "Vegan Protein", 260, 18, 0, 0, 48));
+        foodItems.add(new FoodItem(id++, "Edamame (200g)", "Vegan Protein", 250, 22, 0, 12, 20));
+        foodItems.add(new FoodItem(id++, "Quinoa (200g cooked)", "Vegan Protein", 222, 8, 0, 4, 39));
+        foodItems.add(new FoodItem(id++, "Peanut Butter (50g)", "Vegan Protein", 300, 13, 0, 25, 10));
+        foodItems.add(new FoodItem(id++, "Almonds (50g)", "Vegan Protein", 285, 11, 0, 25, 6));
         return foodItems;
     }
 
