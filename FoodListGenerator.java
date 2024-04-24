@@ -11,6 +11,7 @@ public class FoodListGenerator {
         List<FoodItem> vegetableFoods = new ArrayList<>();
         List<FoodItem> meatFoods = new ArrayList<>();
         List<FoodItem> carbFoods = new ArrayList<>();
+        List<FoodItem> veganProteins = new ArrayList<>();
 
         // Add food items to the corresponding lists based on nutrient type
         for (FoodItem food : FoodData.generateFoodItems()) {
@@ -22,6 +23,8 @@ public class FoodListGenerator {
                 meatFoods.add(food);
             } else if (food.getCategory().equals("Carbs")) {
                 carbFoods.add(food);
+            } else if (food.getCategory().equals("Vegan Protein")) {
+                veganProteins.add(food);
             }
         }
 
@@ -37,12 +40,14 @@ public class FoodListGenerator {
         // Randomly select 5 items from meats and carbs
         List<FoodItem> selectedMeats = selectRandomFoods(meatFoods, 5);
         List<FoodItem> selectedCarbs = selectRandomFoods(carbFoods, 5);
+        List<FoodItem> selectedVeganProteins = selectRandomFoods(veganProteins, 5);
 
         // Prepare a list of lists to return three separate category lists
         List<List<FoodItem>> categorizedFoodLists = new ArrayList<>();
         categorizedFoodLists.add(combinedPlants); // Combined list of fruits and vegetables
         categorizedFoodLists.add(selectedMeats);  // Separate list for meats
         categorizedFoodLists.add(selectedCarbs);  // Separate list for carbs
+        categorizedFoodLists.add(selectedVeganProteins);  // Separate list for vegan proteins
 
         return categorizedFoodLists;
     }
