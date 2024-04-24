@@ -14,10 +14,10 @@ public class CalorieCalculator {
 
         if (gender == 0) {
             //Harris-Benedict Equation for male (BMR calculation)
-            bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+            bmr = 66.5 + (13.75 * weight) + (5.003 * height) - (6.75 * age);
         } else{
             //Harris-Benedict Equation for female (BMR calculation)
-            bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+            bmr = 655.1 + (9.563 * weight) + (1.850 * height) - (4.676 * age);
         }
 
         // Total Daily Energy Expenditure (TDEE) calculation based on activity level
