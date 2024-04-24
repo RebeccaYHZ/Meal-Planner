@@ -31,7 +31,7 @@ public class MealPlanGenerator {
 
         System.out.println(targetCalories);
 
-        System.out.println("Generated Meal Plan:");
+        System.out.println("===== Generated Meal Plan =====");
         for (int i = 0; i < 3; i++) {
             categoryPlan(targetCalories, i, goal); // 0 for vegetables, 1 for meat, 2 for carbs
         }
@@ -43,7 +43,7 @@ public class MealPlanGenerator {
         if (categoryIndex == 0) {
             int vegeCalories = (int) NutritionNeed.vitaminNeed(targetCalories, goal);
             List<FoodItem> vegePlan = generateMealPlan(foods, vegeCalories);
-            System.out.println("Vegetable Meal Plan:");
+            System.out.println("[Vegetable Meal Plan:]");
             for (FoodItem food : vegePlan) {
                 System.out.println(food.getName());
             }
@@ -51,14 +51,14 @@ public class MealPlanGenerator {
             int meatCalories = (int) NutritionNeed.proteinNeed(targetCalories, goal);
             System.out.println(meatCalories);
             List<FoodItem> meatPlan = generateMealPlan(foods, meatCalories);
-            System.out.println("Meat Meal Plan:");
+            System.out.println("[Meat Meal Plan:]");
             for (FoodItem food : meatPlan) {
                 System.out.println(food.getName());
             }
         } else {
             int carbCalories = (int) NutritionNeed.carbsNeed(targetCalories, goal);
             List<FoodItem> carbPlan = generateMealPlan(foods, carbCalories);
-            System.out.println("Carb Meal Plan:");
+            System.out.println("[Carb Meal Plan:]");
             for (FoodItem food : carbPlan) {
                 System.out.println(food.getName());
             }
