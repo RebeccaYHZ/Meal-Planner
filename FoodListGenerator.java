@@ -3,9 +3,9 @@ import java.util.List;
 import java.util.Random;
 
 public class FoodListGenerator {
-    public static List<FoodItem> generateFoodList(int numberOfFoods) {
-        //create the result list, the result list contains 4 kinds of food
-        //each kind contains 5 FoodItem
+    public static List<FoodItem> generateFoodList() {
+        // create the result list, the result list contains 4 kinds of food
+        // each kind contains 5 FoodItem
 
         List<FoodItem> foodList = new ArrayList<>();
 

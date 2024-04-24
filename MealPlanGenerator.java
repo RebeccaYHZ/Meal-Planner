@@ -45,55 +45,51 @@ public class MealPlanGenerator {
         int n = foods.size();
         int[][] dp = new int[n + 1][targetCalories + 1];
 
+        // Define counts for each food category
         int meatCount = 2;
-        int carbCount = 2;
-        int vegetableCount = 0;
-        int fruitCount = 0;
+        int carbCount = 4;
+        int vegetableCount = 4; // Set initial count of vegetables to the maximum available
+        int fruitCount = 4; // Set initial count of fruits to the maximum available
 
+        // Iterate over each food item
         for (int i = 1; i <= n; i++) {
-            // Check if all options are used up and if target calories are met
-            if (meatCount == 0 && carbCount == 0 && vegetableCount == 0 && fruitCount == 0 && targetCalories <= 0) {
+            // Check if all options are used up or target calories are met
+            if (meatCount == 0 && carbCount == 0 && vegetableCount == 0 && fruitCount == 0) {
                 break;
             }
 
-            // Check the category of the current food item
-            String category = foods.get(i - 1).getCategory();
+            FoodItem food = foods.get(i - 1);
+            String category = food.getCategory();
+            int calories = food.getCalories();
+            int proteinValue = food.getProtein();
 
-            // Determine the protein value based on the category and available counts
-            int proteinValue = 0;
+            // Determine protein value based on category and available counts
             if (category.equalsIgnoreCase("meat") && meatCount > 0) {
-                proteinValue = foods.get(i - 1).getProtein();
                 meatCount--;
             } else if (category.equalsIgnoreCase("carbs") && carbCount > 0) {
-                proteinValue = foods.get(i - 1).getProtein();
                 carbCount--;
-            } else if (category.equalsIgnoreCase("vegetable")) {
-                if (vegetableCount < 2 && targetCalories > 0) {
-                    proteinValue = foods.get(i - 1).getProtein();
-                    vegetableCount++;
-                    targetCalories -= foods.get(i - 1).getCalories();
-                }
-            } else if (category.equalsIgnoreCase("fruit")) {
-                if (fruitCount < 2 && targetCalories > 0) {
-                    proteinValue = foods.get(i - 1).getProtein();
-                    fruitCount++;
-                    targetCalories -= foods.get(i - 1).getCalories();
-                }
+            } else if (category.equalsIgnoreCase("vegetable") && vegetableCount > 0) {
+                vegetableCount--;
+            } else if (category.equalsIgnoreCase("fruit") && fruitCount > 0) {
+                fruitCount--;
+            } else {
+                continue; // Skip if the food category is not applicable
             }
 
-            for (int j = 1; j <= targetCalories; j++) {
-                if (foods.get(i - 1).getCalories() <= j) {
-                    dp[i][j] = Math.max(dp[i - 1][j],
-                            dp[i - 1][j - foods.get(i - 1).getCalories()] + proteinValue);
+            // Iterate over target calories for dynamic programming
+            for (int j = 0; j <= targetCalories; j++) {
+                if (calories <= j) {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - calories] + proteinValue);
                 } else {
                     dp[i][j] = dp[i - 1][j];
                 }
             }
         }
 
+        // Construct selected foods based on dynamic programming results
         List<FoodItem> selectedFoods = new ArrayList<>();
         int i = n, j = targetCalories;
-        while (i > 0 && j > 0) {
+        while (j > 0 && i > 0) {
             if (dp[i][j] != dp[i - 1][j]) {
                 selectedFoods.add(foods.get(i - 1));
                 j -= foods.get(i - 1).getCalories();
@@ -103,4 +99,5 @@ public class MealPlanGenerator {
 
         return selectedFoods;
     }
+
 }
