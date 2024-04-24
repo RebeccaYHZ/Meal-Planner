@@ -3,12 +3,9 @@ import java.util.List;
 import java.util.Random;
 
 public class FoodListGenerator {
-    public static List<FoodItem> generateFoodList() {
+    public static List<List<FoodItem>> generateFoodList() {
         // Create the result list, the result list contains 4 kinds of food
         // each kind contains 5 FoodItem
-
-        List<FoodItem> foodList = new ArrayList<>();
-
         // Create lists to hold foods for each nutrient type
         List<FoodItem> fruitFoods = new ArrayList<>();
         List<FoodItem> vegetableFoods = new ArrayList<>();
@@ -28,13 +25,26 @@ public class FoodListGenerator {
             }
         }
 
-        // Randomly select 5 foods from each nutrient type list
-        foodList.addAll(selectRandomFoods(fruitFoods, 5));
-        foodList.addAll(selectRandomFoods(vegetableFoods, 5));
-        foodList.addAll(selectRandomFoods(meatFoods, 5));
-        foodList.addAll(selectRandomFoods(carbFoods, 5));
+        // Randomly select 5 items from fruits and 5 items from vegetables
+        List<FoodItem> selectedFruits = selectRandomFoods(fruitFoods, 5);
+        List<FoodItem> selectedVegetables = selectRandomFoods(vegetableFoods, 5);
 
-        return foodList;
+        // Combine selected fruits and vegetables into one list
+        List<FoodItem> combinedPlants = new ArrayList<>();
+        combinedPlants.addAll(selectedFruits);
+        combinedPlants.addAll(selectedVegetables);
+
+        // Randomly select 5 items from meats and carbs
+        List<FoodItem> selectedMeats = selectRandomFoods(meatFoods, 5);
+        List<FoodItem> selectedCarbs = selectRandomFoods(carbFoods, 5);
+
+        // Prepare a list of lists to return three separate category lists
+        List<List<FoodItem>> categorizedFoodLists = new ArrayList<>();
+        categorizedFoodLists.add(combinedPlants); // Combined list of fruits and vegetables
+        categorizedFoodLists.add(selectedMeats);  // Separate list for meats
+        categorizedFoodLists.add(selectedCarbs);  // Separate list for carbs
+
+        return categorizedFoodLists;
     }
 
     private static List<FoodItem> selectRandomFoods(List<FoodItem> foods, int count) {
