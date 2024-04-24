@@ -4,38 +4,35 @@ import java.util.Random;
 
 public class FoodListGenerator {
     public static List<FoodItem> generateFoodList() {
-        // create the result list, the result list contains 4 kinds of food
+        // Create the result list, the result list contains 4 kinds of food
         // each kind contains 5 FoodItem
 
         List<FoodItem> foodList = new ArrayList<>();
 
         // Create lists to hold foods for each nutrient type
-        List<FoodItem> proteinFoods = new ArrayList<>();
+        List<FoodItem> fruitFoods = new ArrayList<>();
+        List<FoodItem> vegetableFoods = new ArrayList<>();
+        List<FoodItem> meatFoods = new ArrayList<>();
         List<FoodItem> carbFoods = new ArrayList<>();
-        List<FoodItem> fatFoods = new ArrayList<>();
-        List<FoodItem> vitaminFoods = new ArrayList<>();
 
         // Add food items to the corresponding lists based on nutrient type
         for (FoodItem food : FoodData.generateFoodItems()) {
-            if (food.getProtein() > 0) {
-                proteinFoods.add(food);
-            }
-            if (food.getCarb() > 0) {
+            if (food.getCategory().equals("Fruit")) {
+                fruitFoods.add(food);
+            } else if (food.getCategory().equals("Vegetable")) {
+                vegetableFoods.add(food);
+            } else if (food.getCategory().equals("Meat")) {
+                meatFoods.add(food);
+            } else if (food.getCategory().equals("Carbs")) {
                 carbFoods.add(food);
-            }
-            if (food.getFat() > 0) {
-                fatFoods.add(food);
-            }
-            if (food.getVitamin() > 0) {
-                vitaminFoods.add(food);
             }
         }
 
         // Randomly select 5 foods from each nutrient type list
-        foodList.addAll(selectRandomFoods(proteinFoods, 5));
+        foodList.addAll(selectRandomFoods(fruitFoods, 5));
+        foodList.addAll(selectRandomFoods(vegetableFoods, 5));
+        foodList.addAll(selectRandomFoods(meatFoods, 5));
         foodList.addAll(selectRandomFoods(carbFoods, 5));
-        foodList.addAll(selectRandomFoods(fatFoods, 5));
-        foodList.addAll(selectRandomFoods(vitaminFoods, 5));
 
         return foodList;
     }
