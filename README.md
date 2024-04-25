@@ -1,5 +1,6 @@
 # Meal-Planner
 Authors: Yahui Zhang, Xiangyue Zhang, Ke Feng
+
 This is an application that help people decide daily meal plan.
 
 # FoodItem:
