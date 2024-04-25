@@ -1,4 +1,6 @@
 # Meal-Planner
+Authors: Yahui Zhang, Xiangyue Zhang, Ke Feng
+
 This is an application that help people decide daily meal plan.
 
 # How to use:
@@ -18,3 +20,5 @@ This Java class provides a simple yet effective way to calculate Total Daily Ene
 The NutritionNeed class offers a straightforward solution for estimating protein, carbohydrate, and vitamin needs based on Total Daily Energy Expenditure (TDEE) and user-defined goals. By providing inputs for TDEE and goal type, users can obtain personalized recommendations tailored to their objectives of maintaining weight, building muscle, or losing weight.
 # FoodListGenerator
 The FoodListGenerator class offers a convenient solution for generating categorized lists of food items, facilitating meal planning and dietary diversity. By leveraging the provided FoodData class, which contains a comprehensive list of food items, this generator categorizes foods into distinct groups such as fruits, vegetables, meats, carbs, and vegan proteins.
+# MealPlanGenerator
+The MealPlanGenerator class generates a personalized meal plan based on user input such as age, gender, height, weight, activity level, dietary preferences, and fitness goals. It calculates the target daily calorie intake and divides it into three main food categories: vegetables/fruits, meat/vegan protein, and carbohydrates. It then generates a meal plan for each category according to the calorie and nutrient requirements.
