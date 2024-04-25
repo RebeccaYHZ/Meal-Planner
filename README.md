@@ -1,6 +1,13 @@
 # Meal-Planner
 This is an application that help people decide daily meal plan.
 
+# How to use:
+1. Open the whole project
+2. Run MealPlanGenerator in the program folder
+3. Enter your information and desired goal
+4. The program will generate a daily meal plan based on your input
+
+# Classes:
 # FoodItem:
 The FoodItem class represents a model for nutritional information of food items. It is designed to encapsulate the key nutritional metrics such as calories, protein, vitamins, fats, and carbohydrates, alongside general information about the food such as its ID, name, and category. This class can be utilized in applications that require management of food data, such as in nutritional databases, health and diet apps, or meal planning software.
 # FoodData:
